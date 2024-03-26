@@ -14,13 +14,16 @@ import com.repository.UserRepository;
 @Service
 public class UserService {
 	
-	@Autowired
-	private UserRepository userRepo;
-	
-	@Autowired
-	private CandidateRepository canRepo;
-	
-	public User addUser(User user)
+
+	private final UserRepository userRepo;
+	private final CandidateRepository canRepo;
+
+    public UserService(UserRepository userRepo, CandidateRepository canRepo) {
+        this.userRepo = userRepo;
+        this.canRepo = canRepo;
+    }
+
+    public User addUser(User user)
 	{
 		user.setRole("ROLE_NORMAL");
 		

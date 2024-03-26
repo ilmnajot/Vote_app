@@ -12,10 +12,14 @@ import com.service.CandidateService;
 @Controller
 public class AdminController {
 	
-	@Autowired
-	private CandidateService canServ;
-	
-	@GetMapping("/admin")
+
+	private final CandidateService canServ;
+
+    public AdminController(CandidateService canServ) {
+        this.canServ = canServ;
+    }
+
+    @GetMapping("/admin")
 	public String dashboard(Model m, Principal p)
 	{
 		

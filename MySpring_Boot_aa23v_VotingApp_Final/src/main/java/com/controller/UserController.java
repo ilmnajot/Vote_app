@@ -18,10 +18,14 @@ import com.service.UserService;
 @Controller
 public class UserController {
 	
-	@Autowired
-	private UserService userServ;
-	
-	@PostMapping("/createuser")
+
+	private final UserService userServ;
+
+    public UserController(UserService userServ) {
+        this.userServ = userServ;
+    }
+
+    @PostMapping("/createuser")
 	public String createUser(@ModelAttribute User user, HttpSession session)
 	{
 		String email = user.getEmail();

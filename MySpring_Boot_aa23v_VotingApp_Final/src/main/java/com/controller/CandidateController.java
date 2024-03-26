@@ -19,13 +19,17 @@ import com.service.UserService;
 @Controller
 public class CandidateController {
 	
-	@Autowired
-	private CandidateService canServ;
+
+	private final CandidateService canServ;
 	
-	@Autowired
-	private UserService userServ;
-	
-	@PostMapping("/addcandidate") // vote
+	private final UserService userServ;
+
+    public CandidateController(CandidateService canServ, UserService userServ) {
+        this.canServ = canServ;
+        this.userServ = userServ;
+    }
+
+    @PostMapping("/addcandidate") // vote
 	public String addCandidate(@RequestParam("candidate") String candidate,
 			Principal p, Model model, HttpSession session)
 	{

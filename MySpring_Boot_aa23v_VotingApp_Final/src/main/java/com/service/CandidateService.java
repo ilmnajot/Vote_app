@@ -1,7 +1,6 @@
 package com.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +11,14 @@ import com.repository.CandidateRepository;
 @Service
 public class CandidateService {
 	
-	@Autowired
-	private CandidateRepository canRepo;
-	
-	public Candidate addCandidate(Candidate can)
+
+	private final CandidateRepository canRepo;
+
+    public CandidateService(CandidateRepository canRepo) {
+        this.canRepo = canRepo;
+    }
+
+    public Candidate addCandidate(Candidate can)
 	{
 		
 		return this.canRepo.save(can);
@@ -32,7 +35,7 @@ public class CandidateService {
 		return this.canRepo.getById(id);
 	}
 	
-	public void delelteCandidate(int id)
+	public void deleteCandidate(int id)
 	{
 		this.canRepo.deleteById( id);
 	}
